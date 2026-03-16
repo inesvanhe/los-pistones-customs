@@ -5,6 +5,7 @@ import { ErrorCreator } from "./src/lib/ErrorCreator.js";
 import { Logger } from "./src/middleware/logger.js";
 import { CategoryRouter } from "./src/features/categories/categoryRoutes.js";
 import { ServiceRouter } from "./src/features/services/serviceRoutes.js";
+import { PartRouter } from "./src/features/parts/partRoutes.js";
 import connectDB from "./src/config/db.config.js";
 
 // Verbindung zur DB wird hergestellt, bevor der Server startet
@@ -23,6 +24,7 @@ async function startServer() {
   // Routen
   app.use("/categories", CategoryRouter);
   app.use("/services", ServiceRouter);
+  app.use("/parts", PartRouter);
 
   // 404 Fehlerbehandlung: Wenn keine Route gefunden wurde
   app.use((req, res, next) => {
