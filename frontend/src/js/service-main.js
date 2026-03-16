@@ -1,5 +1,6 @@
-import { getServices, getCategories } from "./shared/api/client.js";
-import { initCategoryFilter } from "./js/category-filter.js";
+import "../style.css";
+import { getServices, getCategories } from "../shared/api/client.js";
+import { initCategoryFilter } from "./category-filter.js";
 
 const grid = document.getElementById("services-grid");
 const filterBar = document.querySelector(".flex.flex-wrap.gap-2");
