@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import { settings } from "./src/config/settings.js";
+import { Logger } from "./src/middleware/logger.js";
 import connectDB from "./src/config/db.config.js";
 
 // Verbindung zur DB wird hergestellt, bevor der Server startet
