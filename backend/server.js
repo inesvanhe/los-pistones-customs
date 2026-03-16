@@ -1,22 +1,38 @@
-import express from "express";
-import "dotenv/config";
-import mongoose from "mongoose";
+import express, { json } from "express";
+import { settings } from "./src/config/settings.js";
+import connectDB from "./src/config/db.config.js";
 
-const app = express();
-app.use(express.json());
+// Verbindung zur DB wird hergestellt, bevor der Server startet
+async function startServer() {
+  try {
+    await connectDB(); // Warten, bis die DB-Verbindung erfolgreich hergestellt ist
+  } catch (err) {
+    console.error("Fehler bei der Verbindung zur DB:", err);
+    process.exit(1); // Prozess beenden bei Verbindungsfehler
+  }
 
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    dbName: process.env.DB_NAME,
-  })
-  .then(() => {
-    console.log("Mit MongoDB verbunden");
-  })
-  .catch((error) => {
-    console.error("Fehler bei der Verbindung zu MongoDB:", error);
+  const app = express();
+  app.use(json());
+
+  // Routen
+
+  // 404 Fehlerbehandlung: Wenn keine Route gefunden wurde
+  app.use((req, res, next) => {
+    next(ErrorCreator(404, "Ouh, diese Ressource existiert nicht!"));
   });
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server läuft auf Port ${PORT}`);
-});
+  // Fehlerbehandlung: Alle Fehler werden hier abgefangen und zurückgegeben
+  app.use((err, req, res, next) => {
+    res
+      .status(err.status || 500)
+      .json(AnswerCreator(err.status || 500, err.message || "Server-Fehler"));
+  });
+
+  // Server starten
+  app.listen(settings.PORT, () => {
+    console.log(`Server läuft auf Port ${settings.PORT}`);
+  });
+}
+
+// Starte den Server
+startServer();

@@ -10,9 +10,7 @@ export default async function connectDB() {
 }
 
 async function handleConnection() {
-  await mongoose.connect(settings.DB_CONNECTION_STRING, {
-    dbName: "los-pistones-customs",
-  });
+  await mongoose.connect(settings.DB_CONNECTION_STRING);
   console.log("Erfolgreich zur Datenbank verbunden!");
 
   mongoose.connection.on("disconnected", () => {
