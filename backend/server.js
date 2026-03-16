@@ -7,6 +7,7 @@ import { CategoryRouter } from "./src/features/categories/categoryRoutes.js";
 import { ServiceRouter } from "./src/features/services/serviceRoutes.js";
 import { PartRouter } from "./src/features/parts/partRoutes.js";
 import connectDB from "./src/config/db.config.js";
+import cors from "cors";
 
 // Verbindung zur DB wird hergestellt, bevor der Server startet
 async function startServer() {
@@ -19,6 +20,11 @@ async function startServer() {
 
   const app = express();
   app.use(json());
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+    }),
+  );
   app.use(Logger); // Logger-Middleware für alle Anfragen
 
   // Routen
