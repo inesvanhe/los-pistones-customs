@@ -3,6 +3,7 @@ import { settings } from "./src/config/settings.js";
 import { AnswerCreator } from "./src/lib/AnswerCreator.js";
 import { ErrorCreator } from "./src/lib/ErrorCreator.js";
 import { Logger } from "./src/middleware/logger.js";
+import { CategoryRouter } from "./src/features/categories/categoryRoutes.js";
 import connectDB from "./src/config/db.config.js";
 
 // Verbindung zur DB wird hergestellt, bevor der Server startet
@@ -16,8 +17,10 @@ async function startServer() {
 
   const app = express();
   app.use(json());
+  app.use(Logger); // Logger-Middleware für alle Anfragen
 
   // Routen
+  app.use("/categories", CategoryRouter);
 
   // 404 Fehlerbehandlung: Wenn keine Route gefunden wurde
   app.use((req, res, next) => {
