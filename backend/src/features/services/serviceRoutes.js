@@ -5,7 +5,7 @@ import {
   createService,
   updateService,
   deleteService,
-} from "./service.controller.js";
+} from "./serviceController.js";
 
 export const ServiceRouter = Router();
 

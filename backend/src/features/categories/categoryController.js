@@ -1,4 +1,4 @@
-import { CategoryModel } from "./category.model.js";
+import { CategoryModel } from "./categoryModel.js";
 import { AnswerCreator } from "../../lib/AnswerCreator.js";
 
 // Alle Kategorien

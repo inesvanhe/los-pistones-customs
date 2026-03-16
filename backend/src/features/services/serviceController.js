@@ -1,4 +1,4 @@
-import { ServiceModel } from "./service.model.js";
+import { ServiceModel } from "./serviceModel.js";
 import { AnswerCreator } from "../../lib/AnswerCreator.js";
 
 // Alle Services
