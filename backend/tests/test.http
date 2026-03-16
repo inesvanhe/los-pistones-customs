@@ -1,0 +1,100 @@
+##########################
+# CATEGORIES
+##########################
+
+### Alle Categories abrufen
+GET http://localhost:3000/categories
+Accept: application/json
+
+### Einzelne Category abrufen
+GET http://localhost:3000/categories/<CATEGORY_ID>
+Accept: application/json
+
+### Neue Category erstellen
+POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+  "name": "Custom Build"
+}
+
+### Category aktualisieren
+PUT http://localhost:3000/categories/<CATEGORY_ID>
+Content-Type: application/json
+
+{
+  "name": "Body & Wrap Updated"
+}
+
+### Category löschen
+DELETE http://localhost:3000/categories/<CATEGORY_ID>
+
+
+##########################
+# SERVICES
+##########################
+
+### Alle Services abrufen
+GET http://localhost:3000/services
+Accept: application/json
+
+### Einzelnen Service abrufen
+GET http://localhost:3000/services/<SERVICE_ID>
+Accept: application/json
+
+### Neuen Service erstellen
+POST http://localhost:3000/services
+Content-Type: application/json
+
+{
+  "name": "Ölwechsel",
+  "price": 50,
+  "description": "Kompletter Ölwechsel",
+  "category": "<CATEGORY_ID>"
+}
+
+### Service aktualisieren
+PUT http://localhost:3000/services/<SERVICE_ID>
+Content-Type: application/json
+
+{
+  "price": 60
+}
+
+### Service löschen
+DELETE http://localhost:3000/services/<SERVICE_ID>
+
+
+##########################
+# PARTS
+##########################
+
+### Alle Parts abrufen
+GET http://localhost:3000/parts
+Accept: application/json
+
+### Einzelnen Part abrufen
+GET http://localhost:3000/parts/<PART_ID>
+Accept: application/json
+
+### Neuen Part erstellen
+POST http://localhost:3000/parts
+Content-Type: application/json
+
+{
+  "name": "Sportauspuff",
+  "price": 300,
+  "description": "Hochwertiger Auspuff für Performance-Tuning",
+  "category": "<CATEGORY_ID>"
+}
+
+### Part aktualisieren
+PUT http://localhost:3000/parts/<PART_ID>
+Content-Type: application/json
+
+{
+  "price": 350
+}
+
+### Part löschen
+DELETE http://localhost:3000/parts/<PART_ID>
